@@ -1,12 +1,10 @@
 package de.justmage;
 
-import de.justmage.ui.MainFrame;
 import de.justmage.ui.designer.GuiFrame;
 import org.apache.pdfbox.io.MemoryUsageSetting;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,25 +49,8 @@ public class PDFMerger {
     }
 
     public void printBeginning() {
-        System.out.println("$$$$$$$\\  $$$$$$$\\  $$$$$$$$\\       $$\\      $$\\                                                   \n" +
-                "$$  __$$\\ $$  __$$\\ $$  _____|      $$$\\    $$$ |                                                  \n" +
-                "$$ |  $$ |$$ |  $$ |$$ |            $$$$\\  $$$$ | $$$$$$\\   $$$$$$\\   $$$$$$\\   $$$$$$\\   $$$$$$\\  \n" +
-                "$$$$$$$  |$$ |  $$ |$$$$$\\          $$\\$$\\$$ $$ |$$  __$$\\ $$  __$$\\ $$  __$$\\ $$  __$$\\ $$  __$$\\ \n" +
-                "$$  ____/ $$ |  $$ |$$  __|         $$ \\$$$  $$ |$$$$$$$$ |$$ |  \\__|$$ /  $$ |$$$$$$$$ |$$ |  \\__|\n" +
-                "$$ |      $$ |  $$ |$$ |            $$ |\\$  /$$ |$$   ____|$$ |      $$ |  $$ |$$   ____|$$ |      \n" +
-                "$$ |      $$$$$$$  |$$ |            $$ | \\_/ $$ |\\$$$$$$$\\ $$ |      \\$$$$$$$ |\\$$$$$$$\\ $$ |      \n" +
-                "\\__|      \\_______/ \\__|            \\__|     \\__| \\_______|\\__|       \\____$$ | \\_______|\\__|      \n" +
-                "                                                                     $$\\   $$ |                    \n" +
-                "                                                                     \\$$$$$$  |                    \n" +
-                "                                                                      \\______/                     ");
-        System.out.println("  __  __           _        _                  _           _   __  __                  \n" +
-                " |  \\/  |         | |      | |                | |         | | |  \\/  |                 \n" +
-                " | \\  / | __ _  __| | ___  | |__  _   _       | |_   _ ___| |_| \\  / | __ _  __ _  ___ \n" +
-                " | |\\/| |/ _` |/ _` |/ _ \\ | '_ \\| | | |  _   | | | | / __| __| |\\/| |/ _` |/ _` |/ _ \\\n" +
-                " | |  | | (_| | (_| |  __/ | |_) | |_| | | |__| | |_| \\__ \\ |_| |  | | (_| | (_| |  __/\n" +
-                " |_|  |_|\\__,_|\\__,_|\\___| |_.__/ \\__, |  \\____/ \\__,_|___/\\__|_|  |_|\\__,_|\\__, |\\___|\n" +
-                "                                   __/ |                                     __/ |     \n" +
-                "                                  |___/                                     |___/      ");
+        System.out.println(Const.PDFMergerString);
+        System.out.println(Const.creatorString);
         System.out.println("-----------------------------------------------------------------------------------------------------------");
         System.out.println("PDFMerger is way more advanced and customizable in UI Mode (run without --nogui)");
         System.out.println();
