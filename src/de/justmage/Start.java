@@ -10,14 +10,10 @@ import java.util.Scanner;
 public class Start {
 
     public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new FlatDarculaLaf());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-            return;
-        }
         PDFMerger merger = new PDFMerger(args);
         if(merger.isGui()) {
+            if(!merger.enableDarculaLaf())
+                System.err.println("Failed to enable DarculaLaf... continuing with default LAF");
             merger.startGuiMode();
         } else {
             merger.printBeginning();

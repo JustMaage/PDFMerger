@@ -17,10 +17,11 @@ public class GuiFrame extends JFrame {
     private final PDFMerger merger;
 
     private JPanel mainPane;
+    private JList<String> fileList;
     private JButton mergeButton;
     private JTextField outputField;
-    private JList<String> fileList;
-    private JButton addFileButton;
+    private JButton addButton;
+    private JButton removeButton;
     private JScrollPane scrollPane;
 
     private final DefaultListModel<String> items = new DefaultListModel<>();
@@ -28,9 +29,15 @@ public class GuiFrame extends JFrame {
     public GuiFrame(PDFMerger merger) {
         this.merger = merger;
         init();
-        addFileButton.addActionListener(e -> {
+        addButton.addActionListener(e -> {
             String file = Utils.chooseFile(null, this, new FileNameExtensionFilter("PDF Files", "pdf"), true);
             items.addElement(file);
+        });
+        removeButton.addActionListener(e -> {
+            int index = fileList.getSelectedIndex();
+            if (index != -1) {
+                items.remove(index);
+            }
         });
         mergeButton.addActionListener(e -> {
             if(items.size() == 0 || items.size() == 1) {
@@ -116,4 +123,5 @@ public class GuiFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
     }
+
 }

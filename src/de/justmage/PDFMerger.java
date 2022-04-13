@@ -1,9 +1,11 @@
 package de.justmage;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import de.justmage.ui.designer.GuiFrame;
 import org.apache.pdfbox.io.MemoryUsageSetting;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,4 +66,15 @@ public class PDFMerger {
     public boolean isGui() {
         return isGui;
     }
+
+    public boolean enableDarculaLaf() {
+        try {
+            UIManager.setLookAndFeel(new FlatDarculaLaf());
+            return true;
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
