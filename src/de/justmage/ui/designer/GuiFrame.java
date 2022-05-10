@@ -5,12 +5,17 @@ import de.justmage.ui.Utils;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class GuiFrame extends JFrame {
 
@@ -59,6 +64,7 @@ public class GuiFrame extends JFrame {
                 JOptionPane.showMessageDialog(this, "Something went wrong... [IOException]", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         });
+        addDragAndDropFiles();
     }
 
     private void init() {
@@ -122,6 +128,31 @@ public class GuiFrame extends JFrame {
         setTitle("PDFMerger - Made by JustMage");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
+    }
+
+    private void addDragAndDropFiles() {
+        setDropTargetForElement(fileList);
+        setDropTargetForElement(outputField);
+        setDropTargetForElement(this);
+    }
+
+    private void setDropTargetForElement(Component component) {
+        component.setDropTarget(new DropTarget() {
+            public synchronized void drop(DropTargetDropEvent e) {
+                try {
+                    e.acceptDrop(DnDConstants.ACTION_COPY);
+                    List<File> droppedFiles = (List<File>)
+                            e.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+                    for (File file : droppedFiles) {
+                        if(file.getName().endsWith(".pdf"))
+                            items.addElement(file.getAbsolutePath());
+                    }
+                } catch (Exception ex) {
+                    System.err.println("Error while adding Files: " + ex.getMessage());
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
 }
