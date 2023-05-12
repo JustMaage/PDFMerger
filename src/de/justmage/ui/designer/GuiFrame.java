@@ -131,7 +131,7 @@ public class GuiFrame extends JFrame {
     }
 
     private void addDragAndDropFiles() {
-        setDropTargetForElement(fileList);
+        //setDropTargetForElement(fileList); // breaks file dragging
         setDropTargetForElement(outputField);
         setDropTargetForElement(this);
     }
